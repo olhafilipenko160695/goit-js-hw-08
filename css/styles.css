@@ -1,17 +1,33 @@
-.gallery {
-  list-style: none;
-
+ul {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 24px 24px;
+  padding-top: 24px;
+  gap: 24px;
+  /* user-select: none; */
+  list-style: none;
 }
+
 .gallery-item {
-  display: flex;
-  width: calc((100% - 48px) / 3);
-}
-.gallery-link {
-}
-.gallery-image {
+  list-style: none;
   width: 360px;
   height: 200px;
+}
+.gallery-item img {
+  width: 360px;
+  height: 200px;
+}
+.moodal {
+  width: 1440px;
+  padding: 28px 164px;
+  user-select: none;
+  background-color: #2e2f42cc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal img {
+  width: 1112px;
+  height: 640px;
 }

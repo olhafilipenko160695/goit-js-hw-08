@@ -1,3 +1,5 @@
+//** Масив зображень*/
+
 const images = [
   {
     preview:
@@ -63,12 +65,16 @@ const images = [
     description: "Lighthouse Coast Sea",
   },
 ];
-const list = document.querySelector(".gallery");
+const container = document.querySelector(".gallery");
+container.insertAdjacentHTML("afterbegin", listOfImages(images));
+container.addEventListener("click", clickOnImage);
 
-const listOfImages = images
-  .map(
-    ({ preview, original, description }) =>
-      `<li class="gallery-item">
+//**Додавання розмітки */
+function listOfImages(arr) {
+  return arr
+    .map(
+      ({ preview, original, description }) =>
+        `<li class="gallery-item js-product-item">
   <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
@@ -78,7 +84,42 @@ const listOfImages = images
     />
   </a>
 </li>`
-  )
-  .join("");
+    )
+    .join("");
+}
+//** Делегування */
 
-list.insertAdjacentHTML("afterbegin", listOfImages);
+function clickOnImage(evt) {
+  if (evt.target === evt.currentTarget) {
+    return;
+  }
+  evt.preventDefault();
+
+  const currentMaxImage = evt.target.dataset.source;
+  console.log(currentMaxImage);
+  const imageOne = images.find(({ original }) => original === currentMaxImage);
+
+  const instance = basicLightbox.create(
+    `
+  	<div class="modal">
+    <img src="${imageOne.original}" alt="${imageOne.description}"/>
+  </div>.
+  `,
+    {
+      onShow: () => {
+        window.addEventListener("keydown", closeModal);
+      },
+      onClose: () => {
+        window.removeEventListener("keydown", closeModal);
+      },
+    }
+  );
+  instance.show();
+
+  function closeModal(event) {
+    console.dir(event);
+    if (event.key === "Escape") {
+      instance.close();
+    }
+  }
+}
