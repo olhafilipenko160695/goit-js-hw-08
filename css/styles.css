@@ -4,7 +4,6 @@ ul {
   flex-wrap: wrap;
   padding-top: 24px;
   gap: 24px;
-  /* user-select: none; */
   list-style: none;
 }
 
