@@ -1,0 +1,17 @@
+.gallery {
+  list-style: none;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+}
+.gallery-item {
+  display: flex;
+  width: calc((100% - 48px) / 3);
+}
+.gallery-link {
+}
+.gallery-image {
+  width: 360px;
+  height: 200px;
+}
