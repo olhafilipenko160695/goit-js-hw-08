@@ -74,7 +74,7 @@ function listOfImages(arr) {
   return arr
     .map(
       ({ preview, original, description }) =>
-        `<li class="gallery-item js-product-item">
+        `<li class="gallery-item">
   <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
@@ -96,14 +96,10 @@ function clickOnImage(evt) {
   evt.preventDefault();
 
   const currentMaxImage = evt.target.dataset.source;
-  console.log(currentMaxImage);
   const imageOne = images.find(({ original }) => original === currentMaxImage);
-
   const instance = basicLightbox.create(
     `
-  	<div class="modal">
-    <img src="${imageOne.original}" alt="${imageOne.description}"/>
-  </div>.
+    <img src="${imageOne.original}" alt="${imageOne.description}" class="modal"/>
   `,
     {
       onShow: () => {
@@ -117,7 +113,6 @@ function clickOnImage(evt) {
   instance.show();
 
   function closeModal(event) {
-    console.dir(event);
     if (event.key === "Escape") {
       instance.close();
     }
