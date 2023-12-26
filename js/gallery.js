@@ -109,6 +109,9 @@ function clickOnImage(evt) {
       onShow: () => {
         window.addEventListener("keydown", closeModal);
       },
+      onClose: () => {
+        window.removeEventListener("keydown", closeModal);
+      },
     }
   );
   instance.show();
